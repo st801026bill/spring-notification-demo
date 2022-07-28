@@ -1,5 +1,6 @@
 package com.bill.kafka;
 
+import com.bill.enums.NotificationEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class KafkaMsgDto {
-    private String id;
+public class MessagePacket {
+    private NotificationEnum notificationEnum;
     private String message;
+    private String to;
 }

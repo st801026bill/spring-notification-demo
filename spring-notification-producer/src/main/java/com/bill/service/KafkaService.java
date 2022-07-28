@@ -1,7 +1,6 @@
 package com.bill.service;
 
-import com.bill.constant.KafkaConstant;
-import com.bill.kafka.KafkaMsgDto;
+import com.bill.kafka.MessagePacket;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaProducerException;
@@ -15,18 +14,18 @@ import org.springframework.util.concurrent.ListenableFuture;
 @Slf4j
 public class KafkaService {
   @Autowired
-  private KafkaTemplate<String, KafkaMsgDto> kafkaTemplate;
+  private KafkaTemplate<String, MessagePacket> kafkaTemplate;
 
-  public String sendKafka(String topic, KafkaMsgDto kafkaMsgDto) {
-      log.info("KafkaMsgDto : {}", kafkaMsgDto.toString());
+  public String sendKafka(String topic, MessagePacket packet) {
+      log.info("KafkaMsgDto : {}", packet.toString());
 
-      ListenableFuture<SendResult<String, KafkaMsgDto>> future =
-          kafkaTemplate.send(topic, kafkaMsgDto);
+      ListenableFuture<SendResult<String, MessagePacket>> future =
+          kafkaTemplate.send(topic, packet);
 
-      future.addCallback(new KafkaSendCallback<String, KafkaMsgDto>() {
+      future.addCallback(new KafkaSendCallback<String, MessagePacket>() {
           @Override
-          public void onSuccess(SendResult<String, KafkaMsgDto> result) {
-              log.info("success send message:{} with offset:{} ", kafkaMsgDto, result.getRecordMetadata().offset());
+          public void onSuccess(SendResult<String, MessagePacket> result) {
+              log.info("success send message:{} with offset:{} ", packet, result.getRecordMetadata().offset());
           }
 
           @Override

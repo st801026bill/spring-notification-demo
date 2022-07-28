@@ -1,2 +1,4 @@
 server:
+  servlet:
+    context-path: /spring-notification-producer
   port: 8888
