@@ -1,7 +1,7 @@
 package com.bill.service;
 
+import com.bill.constant.KafkaConstant;
 import com.bill.constant.RedisConstant;
-import com.bill.sender.EmailSender;
 import com.bill.util.JedisUtils;
 import com.bill.view.MailMessage;
 import com.bill.view.MailOtpCode;
@@ -10,34 +10,25 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
-
 @Service
 @Slf4j
 public class EmailService implements IService<MailMessage, MailOtpCode> {
     @Autowired
     private JedisUtils jedisUtils;
 
+    @Autowired
+    private KafkaService kafkaService;
+
     @Override
     public void sendMessage(MailMessage message) {
-        try {
-            String subject = "[Message]";
-            EmailSender.send(message.getTo(), subject, message.getMessage());
-        } catch (MessagingException e) {
-            log.error("send fail");
-        }
+        kafkaService.sendKafka(KafkaConstant.MAIL_TOPIC, message.toPacket());
     }
 
     @Override
     public void sendOtpCode(MailOtpCode otpCode, String otp) {
-        try {
-            if(!protection(otpCode.getTo())) return;
-            String subject = "[OTP CODE]";
-            jedisUtils.setex(RedisConstant.getMailKey(otpCode.getTo()), otp, RedisConstant.EXIPIRE_TIME);
-            EmailSender.send(otpCode.getTo(), subject, otp);
-        } catch (MessagingException e) {
-            log.error("send fail");
-        }
+        if(!protection(otpCode.getTo())) return;
+        jedisUtils.setex(RedisConstant.getMailKey(otpCode.getTo()), otp, RedisConstant.EXIPIRE_TIME);
+        kafkaService.sendKafka(KafkaConstant.MAIL_TOPIC, otpCode.toPacket(otp));
     }
 
     @Override

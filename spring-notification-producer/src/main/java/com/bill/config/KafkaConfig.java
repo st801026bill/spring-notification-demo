@@ -37,8 +37,10 @@ public class KafkaConfig {
     public KafkaTemplate<String, MessagePacket> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
-//    @Bean
-//    public NewTopic topic() {
-//        return TopicBuilder.name(KafkaConstant.SMS_TOPIC).build();
-//    }
+    @Bean
+    public NewTopic topicSms() { return TopicBuilder.name(KafkaConstant.SMS_TOPIC).build(); }
+    @Bean
+    public NewTopic topicMail() { return TopicBuilder.name(KafkaConstant.MAIL_TOPIC).build(); }
+    @Bean
+    public NewTopic topicTelegram() { return TopicBuilder.name(KafkaConstant.TELEGRAM_TOPIC).build(); }
 }

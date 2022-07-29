@@ -8,8 +8,6 @@ import com.bill.service.TelegramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-
 @Component
 public class NotificationFactory<Message, OtpCode> {
 

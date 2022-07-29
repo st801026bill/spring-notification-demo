@@ -7,20 +7,15 @@ import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class SmsMessage extends BaseMessage {
-
+public class TelegramMessage extends BaseMessage {
     @NotBlank(message = "type cannot be empty")
-    @Schema(description = "type", required = true, example = "1")
+    @Schema(description = "type", required = true, example = "3")
     private String type;
 
     @NotBlank(message = "message cannot be empty")
     @Schema(description = "message", required = true, example = "test message")
     private String message;
 
-    @NotBlank(message = "to cannot be empty")
-    @Schema(description = "to", required = true, example = "+886972043271")
-    private String to;
-
-    public MessagePacket toPacket() { return new MessagePacket(NotificationEnum.SMS, this.message, this.to); }
+    public MessagePacket toPacket() { return new MessagePacket(NotificationEnum.TELEGRAM, this.message, ""); }
 }
 
