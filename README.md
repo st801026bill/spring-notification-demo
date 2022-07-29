@@ -69,3 +69,27 @@ step 3 : Run Docker-Compose:
 * SMS: 
 * Mail:
 * Telegram:
+* Add application-dev.yml & set parameter
+```sql
+twilio:
+  accountSid: 
+  authToken: 
+  sender: 
+
+mailtrap:
+  host: 
+  port: 
+  userId: 
+  password: 
+  starttls: 
+  auth: 
+  from: 
+
+telegram:
+  url: 
+  apiToken: 
+  id: 
+
+kafka:
+  server: 127.0.0.1:9092
+```
