@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-public class NotificationFactory<Message, OtpCode> {
+public class NotificationFactory {
 
     @Autowired
     private SmsService smsService;
@@ -20,16 +20,12 @@ public class NotificationFactory<Message, OtpCode> {
     @Autowired
     private TelegramService telegramService;
 
-    public IService<Message, OtpCode> getNotification(NotificationEnum e) {
+    public IService getNotification(NotificationEnum e) {
         switch (e) {
-            case SMS : return (IService<Message, OtpCode>) smsService;
-            case EMAIL : return (IService<Message, OtpCode>) emailSErvice;
-            case TELEGRAM: return (IService<Message, OtpCode>) telegramService;
+            case SMS : return smsService;
+            case EMAIL : return emailSErvice;
+            case TELEGRAM: return telegramService;
             default: throw new NullPointerException();
         }
-    }
-
-    public IService<Message, OtpCode> getNotification(String type) {
-        return getNotification(NotificationEnum.findByType(type));
     }
 }

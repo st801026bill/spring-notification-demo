@@ -12,8 +12,4 @@ public class MessagePacket {
     private NotificationEnum notificationEnum;
     private String message;
     private String to;
-
-//    public toSms() {
-//
-//    }
 }

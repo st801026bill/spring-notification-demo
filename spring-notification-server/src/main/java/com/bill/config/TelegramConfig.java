@@ -2,15 +2,15 @@ package com.bill.config;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
+@ConfigurationProperties(prefix = "telegram")
 @Data
 public class TelegramConfig {
-  @Value("${telegram.url}")
   private String url;
-  @Value("${telegram.apiToken}")
   private String apiToken;
-  @Value("${telegram.id}")
   private String id;
 }

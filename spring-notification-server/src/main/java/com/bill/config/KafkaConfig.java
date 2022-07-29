@@ -7,6 +7,7 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -19,8 +20,8 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 @Configuration
 @Slf4j
 public class KafkaConfig {
-
-    public static final String DEFAULT_SERVER = "127.0.0.1:9092";
+    @Value("${kafka.server}")
+    public String KAFKA_SERVER;
     public static final String SMS_GROUP = KafkaConstant.SMS_GROUP;
     public static final String MAIL_GROUP = KafkaConstant.MAIL_GROUP;
     public static final String TELEGRAM_GROUP = KafkaConstant.TELEGRAM_GROUP;
@@ -38,7 +39,7 @@ public class KafkaConfig {
         Map<String, Object> config = new HashMap<>();
 
         config.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, DEFAULT_SERVER);
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_SERVER);
         config.put(ConsumerConfig.GROUP_ID_CONFIG, SMS_GROUP);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
@@ -58,7 +59,7 @@ public class KafkaConfig {
         Map<String, Object> config = new HashMap<>();
 
         config.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, DEFAULT_SERVER);
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_SERVER);
         config.put(ConsumerConfig.GROUP_ID_CONFIG, MAIL_GROUP);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
@@ -78,7 +79,7 @@ public class KafkaConfig {
         Map<String, Object> config = new HashMap<>();
 
         config.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, DEFAULT_SERVER);
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_SERVER);
         config.put(ConsumerConfig.GROUP_ID_CONFIG, TELEGRAM_GROUP);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);

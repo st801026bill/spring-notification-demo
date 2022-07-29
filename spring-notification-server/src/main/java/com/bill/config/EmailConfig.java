@@ -2,31 +2,25 @@ package com.bill.config;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
+@ConfigurationProperties(prefix = "mailtrap")
 @Data
 public class EmailConfig {
-    @Value("${mailtrap.host}")
     private String host;
-    @Value("${mailtrap.port}")
     private String port;
-    @Value("${mailtrap.userId}")
     private String userId;
-    @Value("${mailtrap.password}")
     private String password;
-    @Value("${mailtrap.starttls}")
     private boolean starttls;
-    @Value("${mailtrap.auth}")
     private boolean auth;
-
-
-    @Value("${mailtrap.from}")
     private String from;
 
     @Bean
