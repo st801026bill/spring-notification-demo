@@ -6,15 +6,17 @@
 **A. Enviroment Setting**  
 ---
 **1. Docker Redis**  
+https://marcus116.blogspot.com/2019/02/how-to-run-redis-in-docker.html  
+step 1 : pull docker image
 ```sql
-# https://marcus116.blogspot.com/2019/02/how-to-run-redis-in-docker.html
-# 1. pull docker image
 > docker pull redis
-
-# 2. run redis container
+```
+step 2 : run redis container
+```sql
 > docker run --name redis-notification -p 6379:6379 -d redis
-
-# 3. exec redis cli
+```
+step 3 : exec redis cli
+```sql
 > docker ps
 > docker exec -it e819 bash
 > redis-cli
@@ -22,13 +24,13 @@
 ```
 
 **2. Docker Kafka**  
-a. Pull Image
+step 1 : Pull Image
 ```sql
 # docker image pull
 > docker pull wurstmeister/kafka
 > docker pull wurstmeister/zookeeper
 ```  
-b. Create docker-compose.yml
+step 2 : Create docker-compose.yml
 ```sql
 version: '3'
 services:
@@ -45,9 +47,9 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
 ```
-c. Run Redis & Docker-Compose:
+step 3 : Run Docker-Compose:
 ```sql
-#1. run docker-compose
+# run docker-compose
 > docker-compose up -d
 ```
 
