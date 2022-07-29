@@ -61,15 +61,7 @@ step 3 : Run Docker-Compose:
 
 **3. Telegram:**  
 
-
-**C. Demo**
----
-
-**2. Open Api:**  
-* SMS: 
-* Mail:
-* Telegram:
-* Add application-dev.yml & set parameter
+**4. Add application-dev.yml & set parameter in spring-notification-server**  
 ```sql
 twilio:
   accountSid: 
@@ -93,3 +85,10 @@ telegram:
 kafka:
   server: 127.0.0.1:9092
 ```
+
+**C. Demo**
+---
+**1. Open Api:**  
+* SMS: 
+* Mail:
+* Telegram:
