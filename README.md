@@ -24,7 +24,7 @@ step 3 : exec redis cli
 ```
 
 **2. Docker Kafka**  
-step 1 : Pull Image
+step 1 : pull docker image
 ```sql
 # docker image pull
 > docker pull wurstmeister/kafka
@@ -56,31 +56,31 @@ step 3 : Run Docker-Compose:
 **B. Notification Service**  
 ---
 **1. Twilio:**  
-
+https://console.twilio.com  
 **2. Mailtrap:**  
-
+https://mailtrap.io  
 **3. Telegram:**  
-
+https://medium.com/%E7%A8%8B%E5%BC%8F%E8%A3%A1%E6%9C%89%E8%9F%B2/telegram-bot-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%96%8B%E7%99%BC%E5%B0%B1%E4%B8%8A%E6%89%8B-f8e93a05f26c  
 **4. Add application-dev.yml & set parameter in spring-notification-server**  
 ```sql
 twilio:
-  accountSid: 
-  authToken: 
-  sender: 
+  accountSid: ${accountSid}
+  authToken: ${authToken}
+  sender: ${sender}
 
 mailtrap:
-  host: 
-  port: 
-  userId: 
-  password: 
-  starttls: 
-  auth: 
-  from: 
+  host: ${host}
+  port: ${port}
+  userId: ${userId}
+  password: ${password}
+  starttls: ${starttls}
+  auth: ${auth}
+  from: ${from}
 
 telegram:
-  url: 
-  apiToken: 
-  id: 
+  url: ${url}
+  apiToken: ${apiToken}
+  id: ${id}
 
 kafka:
   server: 127.0.0.1:9092
