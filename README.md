@@ -86,8 +86,11 @@ kafka:
   server: 127.0.0.1:9092
 ```
 
-**C. Demo**
+**C. Demo**  
 ---
-**1. Open Api:**  
+**1. run application  
+```spring-notification-producer```  
+```spring-notification-server```   
+**2. Open Api:**  
 ```http://localhost:8888/spring-notification-producer/swagger-ui/index.html```  
-send otp code & verify, have fun!
+send otp code & verify!
