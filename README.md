@@ -99,4 +99,5 @@ kafka:
 ```spring-notification-server```   
 **2. Open Api:**  
 ```http://localhost:8888/spring-notification-producer/swagger-ui/index.html```  
+![image](https://github.com/st801026bill/spring-notification-demo/blob/master/image/openapi.png)
 send otp code & verify!
