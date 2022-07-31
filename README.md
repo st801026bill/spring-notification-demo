@@ -89,6 +89,5 @@ kafka:
 **C. Demo**
 ---
 **1. Open Api:**  
-* SMS: 
-* Mail:
-* Telegram:
+```http://localhost:8888/spring-notification-producer/swagger-ui/index.html```  
+send otp code & verify, have fun!
